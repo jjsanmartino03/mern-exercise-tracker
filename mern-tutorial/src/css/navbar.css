@@ -1,0 +1,17 @@
+.nav-link.activate{
+  border-bottom: 2px green solid!important;
+}
+.nav-link{
+  transition: 0.3s;
+  border-bottom: transparent solid 2px;;
+}
+.nav-link.active{
+  color: rgba(255,255,255,.5)!important;
+}
+.nav-link:hover{
+  transform: scale(1.15);
+}
+.navbar-brand{
+  font-family: 'Architects Daughter', cursive;
+  font-size:1.4em!important;
+}
