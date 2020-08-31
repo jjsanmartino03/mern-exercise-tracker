@@ -1,0 +1,26 @@
+## Server
+backend/node_modules
+backend/.env
+## Client
+
+# dependencies
+mern-tutorial/node_modules
+mern-tutorial/.pnp
+mern-tutorial/.pnp.js
+
+# testing
+mern-tutorial/coverage
+
+# production
+mern-tutorial/build
+
+# misc
+mern-tutorial/.DS_Store
+mern-tutorial/.env.local
+mern-tutorial/.env.development.local
+mern-tutorial/.env.test.local
+mern-tutorial/.env.production.local
+
+mern-tutorial/npm-debug.log*
+mern-tutorial/yarn-debug.log*
+mern-tutorial/yarn-error.log*
