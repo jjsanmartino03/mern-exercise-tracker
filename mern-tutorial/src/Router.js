@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import {Provider} from "react-redux";
 
 import store from "./store/index";
+import CreateExercise from './components/CreateExercise';
 
 function MyRouter() {
   return (
@@ -12,6 +13,9 @@ function MyRouter() {
     <Router>
       <Route path="">
         <Navbar/>
+      </Route>
+      <Route path="/create">
+        <CreateExercise/>
       </Route>
     </Router>
     </Provider>
