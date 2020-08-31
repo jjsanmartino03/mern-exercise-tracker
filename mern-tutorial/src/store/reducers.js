@@ -1,10 +1,12 @@
 import {combineReducers} from "redux";
 
+import {actionNames} from "./actions";
+
 const initialStore = {
   navbar : {
     links: [
       {path : "", text: "Home"},
-      {path: "hola", text: "Hola"}
+      {path: "/create", text: "Create"}
     ]
   },
   global: {
@@ -20,6 +22,8 @@ const NavbarReducer = (navbarState = initialStore.navbar, action) => {
 }
 const globalReducer = (globalState = initialStore.global, action) => {
   switch(action.type){
+    case actionNames.changeCurrentLocation:
+      return {...globalState, currentLocation : action.newLocation};
     default:
       return (globalState);
   }
