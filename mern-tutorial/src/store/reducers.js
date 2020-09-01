@@ -11,6 +11,7 @@ const initialStore = {
   },
   global: {
     currentLocation : "",
+    users: ["Pepe", "Julio"]
   }
 }
 

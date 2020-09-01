@@ -18,9 +18,9 @@ class CreateExercise extends React.Component {
   }
   render() {
     return (
-      <Container>
+      <Container className="pb-5">
         <h1 className="text-center my-5">Create an Exercise!</h1>
-        <CreateExerciseForm />
+        <CreateExerciseForm users={this.props.users}/>
       </Container>
 
     )
