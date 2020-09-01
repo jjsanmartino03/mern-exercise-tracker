@@ -1,8 +1,7 @@
 import React from "react";
-import { Formik, useField, Field } from "formik";
-import { Form, Col, Row, InputGroup, Button } from "react-bootstrap";
+import { Formik } from "formik";
+import { Form, Col, Button } from "react-bootstrap";
 import * as yup from "yup";
-import { connect } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import { MyUsernameField, DurationField, DescriptionField, DatePickerField } from "./CreateExerciseFormElements";
 
@@ -22,14 +21,11 @@ const formInitialValues = {
 
 
 class CreateExerciseForm extends React.Component {
-  handleSubmit = (values) => {
-    alert(JSON.stringify(values, null, 2))
-  }
   render() {
     return (
       <Formik
         validationSchema={schema}
-        onSubmit={this.handleSubmit}
+        onSubmit={this.props.onSubmit}
         initialValues={formInitialValues}
       >
         {({

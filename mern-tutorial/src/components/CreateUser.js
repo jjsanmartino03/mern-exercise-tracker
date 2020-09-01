@@ -5,7 +5,7 @@ import { Formik, useField } from "formik";
 import {Form, Button, InputGroup, Col} from "react-bootstrap";
 import * as yup from "yup";
 
-import { changeCurrentLocation } from "../store/actions";
+import { changeCurrentLocation, createUser } from "../store/actions";
 
 
 const UsernameField = ({label, ...props}) => {
@@ -50,8 +50,9 @@ class CreateUsername extends React.Component {
   componentDidMount = () => {
     this.props.dispatch(changeCurrentLocation(this.location));
   }
-  handleSubmit(values){
-    alert(JSON.stringify(values, null,2));
+  handleSubmit = (user) => {
+    alert(JSON.stringify(user, null,2));
+    this.props.dispatch(createUser(user));
   }
   render() {
     return (

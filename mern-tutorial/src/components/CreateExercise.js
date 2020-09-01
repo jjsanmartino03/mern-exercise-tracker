@@ -13,11 +13,14 @@ class CreateExercise extends React.Component {
   componentDidMount = () => {
     this.props.dispatch(changeCurrentLocation(this.location));
   }
+  handleSubmit = (exercise) => {
+    alert(JSON.stringify(exercise, null, 2))
+  }
   render() {
     return (
       <Container className="pb-5">
         <h1 className="text-center my-5">Create an Exercise!</h1>
-        <CreateExerciseForm users={this.props.users}/>
+        <CreateExerciseForm onSubmit={this.handleSubmit} users={this.props.users}/>
       </Container>
 
     )

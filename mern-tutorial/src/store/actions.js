@@ -1,5 +1,6 @@
 export const actionNames = {
   changeCurrentLocation : "CHANGE_CURRENT_LOCATION",
+  createUser : "CREATE_USER"
 }
 
 export const changeCurrentLocation = (newLocation) =>{
@@ -8,3 +9,10 @@ export const changeCurrentLocation = (newLocation) =>{
     newLocation
   })
 };
+
+export const createUser = (newUser) => {
+  return ({
+    type: actionNames.createUser,
+    newUser,
+  })
+}
