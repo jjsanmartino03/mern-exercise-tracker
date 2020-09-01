@@ -1,16 +1,20 @@
 import React from "react";
-import { Formik, Field } from "formik";
+import { Formik, useField, Field } from "formik";
 import { Form, Col, Row, InputGroup, Button } from "react-bootstrap";
 import * as yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { MyUsernameField, DescriptionField } from "./CreateExerciseFormElements";
 
 const schema = yup.object({
-  username: yup.string().required(),
+  username: yup.string().required("Hey bro username required"),
   description: yup.string().required(),
-  duration: yup.string().required(),
-  date: yup.string().required(),
+  duration: yup.number().required(),
+  date: yup.date().required(),
 });
+
+
+
 
 class CreateExerciseForm extends React.Component {
   handleSubmit = (values) => {
@@ -62,26 +66,20 @@ class CreateExerciseForm extends React.Component {
 
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group as={Col} md="4" controlId="validationFormikUsername">
-                  <Form.Label>Username</Form.Label>
-                  <InputGroup>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control
-                      type="text"
-                      placeholder="Username"
-                      aria-describedby="inputGroupPrepend"
-                      name="username"
-                      value={values.username}
-                      onChange={handleChange}
-                      isInvalid={!!errors.username}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.username}
-                    </Form.Control.Feedback>
-                  </InputGroup>
-                </Form.Group>
+
+
+                <MyUsernameField
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  label="Username" />
+                <DescriptionField
+                type="text"
+                name="description"
+                placeholder="Description"
+                label="Exercise description"/>
+
+
               </Form.Row>
               <Form.Row>
                 <Form.Group as={Col} md="6" controlId="validationFormik03">
