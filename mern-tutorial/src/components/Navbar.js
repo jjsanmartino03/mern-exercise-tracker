@@ -14,7 +14,10 @@ const NavigationBar = (props) => {
     bg="dark"
     variant="dark"
     >
-      <Navbar.Brand>Exercise Tracker</Navbar.Brand>
+      <Navbar.Brand><Nav.Link 
+      as={Link} 
+      to={props.navbar.links[0].path}>
+        Exercise Tracker</Nav.Link></Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-nav-navbar"  className="flex-grow-0"/>
       <Navbar.Collapse id="responsive-nav-navbar" className="flex-grow-0">
         <Nav className="justify-content-around">

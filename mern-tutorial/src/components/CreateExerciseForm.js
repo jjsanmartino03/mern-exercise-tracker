@@ -2,6 +2,8 @@ import React from "react";
 import { Formik, Field } from "formik";
 import { Form, Col, Row, InputGroup, Button } from "react-bootstrap";
 import * as yup from "yup";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const schema = yup.object({
   username: yup.string().required(),
@@ -11,6 +13,9 @@ const schema = yup.object({
 });
 
 class CreateExerciseForm extends React.Component {
+  handleSubmit = (values) => {
+
+  }
   render() {
     return (
       <Formik
@@ -20,6 +25,7 @@ class CreateExerciseForm extends React.Component {
           username: '',
           description: '',
           duration: 0,
+          date: new Date(),
         }}
       >
         {({
