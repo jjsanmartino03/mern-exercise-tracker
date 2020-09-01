@@ -6,7 +6,8 @@ const initialStore = {
   navbar : {
     links: [
       {path : "", text: "Home"},
-      {path: "/create", text: "Create"}
+      {path: "/create", text: "Create"},
+      {path:"/signup", text: "Create a user"}
     ]
   },
   global: {

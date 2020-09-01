@@ -4,7 +4,7 @@ import { Form, Col, Row, InputGroup, Button } from "react-bootstrap";
 import * as yup from "yup";
 import { connect } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
-import { MyUsernameField, DescriptionField, DurationField, DatePickerField } from "./CreateExerciseFormElements";
+import { MyUsernameField, DurationField, DescriptionField, DatePickerField } from "./CreateExerciseFormElements";
 
 const schema = yup.object({
   username: yup.string().min(3, "Username to short").required("Required"),
@@ -13,7 +13,12 @@ const schema = yup.object({
   date: yup.date().required("Required"),
 });
 
-
+const formInitialValues = {
+  username: "",
+  description: '',
+  duration: "",
+  date: new Date(),
+};
 
 
 class CreateExerciseForm extends React.Component {
@@ -25,12 +30,7 @@ class CreateExerciseForm extends React.Component {
       <Formik
         validationSchema={schema}
         onSubmit={this.handleSubmit}
-        initialValues={{
-          username: "",
-          description: '',
-          duration: "",
-          date: new Date(),
-        }}
+        initialValues={formInitialValues}
       >
         {({
           handleSubmit,
@@ -72,9 +72,9 @@ class CreateExerciseForm extends React.Component {
               </Form.Row>
               <Form.Row className="justify-content-center">
                 <Col md={3}>
-                <Button type="submit"className="w-100">Submit form</Button>
+                  <Button type="submit" className="w-100">Submit form</Button>
                 </Col>
-                
+
               </Form.Row>
 
             </Form>

@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 
 import store from "./store/index";
 import CreateExercise from './components/CreateExercise';
+import CreateUsername from "./components/CreateUsername";
 
 function MyRouter() {
   return (
@@ -16,6 +17,9 @@ function MyRouter() {
       </Route>
       <Route path="/create">
         <CreateExercise/>
+      </Route>
+      <Route path="/signup">
+        <CreateUsername/>
       </Route>
     </Router>
     </Provider>

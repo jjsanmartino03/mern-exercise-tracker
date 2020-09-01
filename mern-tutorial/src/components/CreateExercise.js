@@ -13,9 +13,6 @@ class CreateExercise extends React.Component {
   componentDidMount = () => {
     this.props.dispatch(changeCurrentLocation(this.location));
   }
-  componentWillUnmount = () => {
-    this.props.dispatch(changeCurrentLocation(""));
-  }
   render() {
     return (
       <Container className="pb-5">
