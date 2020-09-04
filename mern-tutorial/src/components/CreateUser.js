@@ -51,7 +51,6 @@ class CreateUsername extends React.Component {
     this.props.dispatch(changeCurrentLocation(this.location));
   }
   handleSubmit = (user) => {
-    alert(JSON.stringify(user, null,2));
     this.props.dispatch(createUser(user));
   }
   render() {

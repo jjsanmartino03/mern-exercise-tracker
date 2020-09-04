@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 
 export const MyUsernameField = ({ label, options, ...props }) => {
   const [field, meta] = useField(props);
+
   return (
     <Form.Group as={Col} md={6}controlId="validationFormikUsername">
       <Form.Label>{label}</Form.Label>
@@ -21,9 +22,10 @@ export const MyUsernameField = ({ label, options, ...props }) => {
         >
           <option value="" disabled >Select your username</option>
           {
-            props.users.map((optionValue, index) => (
-              <option key={index}>{optionValue}</option>
-            ))
+            props.users.map((optionValue, ind) => {
+              return(
+              <option key={optionValue._id || ind}>{optionValue.username}</option>
+            )})
           }
         </Form.Control>
 
