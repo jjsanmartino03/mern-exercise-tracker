@@ -9,7 +9,7 @@ const NavigationBar = (props) => {
     <Navbar
     collapseOnSelect={true}
     expand="md"
-    className="justify-content-md-around border-bottom"
+    className="shadow-lg justify-content-md-around"
     sticky="top"
     bg="dark"
     variant="dark"

@@ -5,9 +5,9 @@ import { actionNames } from "./actions";
 const initialStore = {
   navbar: {
     links: [
-      { path: "/", text: "Home" },
+      { path: "/", text: "Exercises" },
       { path: "/create", text: "Create" },
-      { path: "/signup", text: "Create a user" }
+      { path: "/signup", text: "Create a user" },
     ]
   },
   global: {
@@ -16,8 +16,13 @@ const initialStore = {
     exercises: [],
   },
   exercisesView: {
-    sent : false,
-  }
+    sent: false,
+  },
+  editView: {
+    exercise: {},
+    loaded: false,
+    edited: false,
+  },
 }
 
 const NavbarReducer = (navbarState = initialStore.navbar, action) => {
@@ -47,25 +52,45 @@ const globalReducer = (globalState = initialStore.global, action) => {
           exercise => (!(exercise._id === action.id))
         )
       }
+    case actionNames.updateExerciseLocally:
+      return {
+        ...globalState,
+        exercises: globalState.exercises.map(value =>
+          (value._id === action.newExercise._id ? action.newExercise : value)
+        )
+      };
     default:
       return (globalState);
   }
 }
 
 const exerciseViewReducer = (state = initialStore.exercisesView, action) => {
-  switch (action.type){
+  switch (action.type) {
     case actionNames.toggleExerciseSent:
-      return {...state, sent: action.bool};
-      default:
-        return {...state};
+      return { ...state, sent: action.bool };
+    default:
+      return { ...state };
   }
+}
 
+const editViewReducer = (state = initialStore.editView, action) => {
+  switch (action.type) {
+    case actionNames.saveExerciseToEdit:
+      return { ...state, exercise: action.exercise, loaded: true }
+    case actionNames.setEditViewToDefault:
+      return initialStore.editView;
+    case actionNames.toggleExerciseEdited:
+      return {...state, edited:action.bool}
+    default:
+      return { ...state };
+  }
 }
 
 const mainReducer = combineReducers({
   navbar: NavbarReducer,
   global: globalReducer,
-  exercisesView : exerciseViewReducer,
+  exercisesView: exerciseViewReducer,
+  editView: editViewReducer,
 });
 
 export default mainReducer;

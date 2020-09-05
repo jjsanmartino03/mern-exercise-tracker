@@ -8,6 +8,7 @@ import store from "./store/index";
 import CreateExercise from './components/CreateExercise';
 import CreateUser from "./components/CreateUser";
 import ExercisesList from "./components/ExercisesList";
+import EditExercise from "./components/EditExercise";
 
 function MyRouter() {
   return (
@@ -25,6 +26,7 @@ function MyRouter() {
         <Route exact path="/signup">
           <CreateUser />
         </Route>
+        <Route exact path="/edit/:id" component={EditExercise} />
       </Router>
     </Provider>
   )

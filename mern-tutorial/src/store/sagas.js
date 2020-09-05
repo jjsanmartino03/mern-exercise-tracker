@@ -1,14 +1,15 @@
 import {takeEvery, put ,call} from "redux-saga/effects";
 import axios from "axios";
 
-import {actionNames, addFetchedUsers, fetchUsers as updateUsersCollection, addFetchedExercises, fetchExercises as updateExercisesCollection, deleteExerciseLocally, toggleExerciseSent, } from "./actions";
+import {actionNames, addFetchedUsers, fetchUsers as updateUsersCollection, addFetchedExercises, fetchExercises as updateExercisesCollection, deleteExerciseLocally, toggleExerciseSent, saveExerciseToEdit, updateExerciseLocally, toggleExerciseEdited } from "./actions";
 
-const port = 3001;
+const port = 7000;
 const urls = {
   sendNewUser : `http://localhost:${port}/users/add/`,
   getUsers : `http://localhost:${port}/users/`,
   sendNewExercise : `http://localhost:${port}/exercises/add/`,
-  exercises : `http://localhost:${port}/exercises/`
+  exercises : `http://localhost:${port}/exercises/`,
+  updateExercise : `http://localhost:${port}/exercises/update/`,
 }
 
 
@@ -18,9 +19,25 @@ function* mainSaga  (){
   yield takeEvery(actionNames.fetchUsers, fetchUsersSaga);
   yield takeEvery(actionNames.fetchExercises, fetchExercisesSaga);
   yield takeEvery(actionNames.deleteExerciseFromApi, deleteExerciseSaga);
+  yield takeEvery(actionNames.fetchExerciseById, fetchExerciseByIdSaga);
+  yield takeEvery(actionNames.updateExerciseById, updateExerciseSaga);
 };
 
+function* updateExerciseSaga (action){
+  try {
+    const response = yield call(updateExercise, action.id, action.newExercise);
 
+    yield put(updateExerciseLocally(action.newExercise));
+    yield put(toggleExerciseEdited(true));
+
+  } catch (error) {
+    console.log("Error", error);
+  }
+}
+const updateExercise  = async (id, exercise) => {
+  const response = (await axios.post(urls.updateExercise + id, exercise)).data;
+  return response;
+}
 
 function* deleteExerciseSaga (action) {
   try {
@@ -108,6 +125,19 @@ const sendNewUser = async (newUser) =>{
   console.log(response);
 }
 
+function* fetchExerciseByIdSaga(action){
+  try {
+    const response = yield call(fetchExerciseById, action.id);
 
+    yield put(saveExerciseToEdit(response));
+  } catch (error) {
+    console.log("Error", error)
+  }
+}
+const fetchExerciseById = async (id) => {
+  const response = (await axios.get(urls.exercises + id)).data;
+
+  return response;
+}
 
 export default mainSaga;

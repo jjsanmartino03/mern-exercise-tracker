@@ -1,13 +1,13 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import {connect} from "react-redux";
-import {Redirect} from "react-router-dom"
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom"
 
 import CreateExerciseForm from "./CreateExerciseForm";
-import {changeCurrentLocation, createExercise, fetchUsers, toggleExerciseSent} from "../store/actions";
+import { changeCurrentLocation, createExercise, fetchUsers, toggleExerciseSent } from "../store/actions";
 
 class CreateExercise extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.location = "/create";
   }
@@ -24,9 +24,16 @@ class CreateExercise extends React.Component {
   }
   render() {
     return (
-      <Container className="pb-5">
+      <Container className="w-75 pb-5">
         <h1 className="text-center my-5">Create an Exercise!</h1>
-        <CreateExerciseForm onSubmit={this.handleSubmit} users={this.props.global.users}/>
+        <CreateExerciseForm formInitialValues={
+          {
+            username: "",
+            description: '',
+            duration: "",
+            date: new Date(),
+          }}
+           onSubmit={this.handleSubmit} users={this.props.global.users} />
         {this.props.exercisesView.sent ? <Redirect to="/" /> : ""}
       </Container>
 
@@ -34,6 +41,6 @@ class CreateExercise extends React.Component {
   }
 }
 
-const mapStateToProps = ({global, exercisesView}) => ({global, exercisesView});
+const mapStateToProps = ({ global, exercisesView }) => ({ global, exercisesView });
 
 export default connect(mapStateToProps)(CreateExercise);

@@ -14,8 +14,17 @@ export const actionNames = {
   fetchExercises : "FETCH_EXERCISES",
   addFetchedExercises : "ADD_FETCHED_EXERCISES",
 
+  fetchExerciseById: "FETCH_EXERCISE_BY_ID",
+  saveExerciseToEdit: "SAVE_EXERCISE_TO_EDIT",
+
   deleteExerciseFromApi : "DELETE_EXERCISE_FROM_API",
   deleteExerciseLocally : "DELETE_EXERCISE_LOCALLY",
+
+  setEditViewToDefault : "SET_EDIT_VIEW_TO_DEFAULT",
+
+  updateExerciseById : "UPDATE_EXERCISE_BY_ID",
+  updateExerciseLocally : "UPDATE_EXERCISE_LOCALLY",
+  toggleExerciseEdited : "TOGGLE_EXERCISE_EDITED",
   
 }
 
@@ -105,3 +114,37 @@ export const toggleExerciseSent = (bool) => {
     bool,
   })
 }
+
+export const fetchExerciseById = id => {
+  return ({
+    type:actionNames.fetchExerciseById,
+    id,
+  })
+}
+export const saveExerciseToEdit = exercise => {
+  return ({
+    type: actionNames.saveExerciseToEdit,
+    exercise,
+  })
+}
+export const setEditViewToDefault = () => {
+  return ({
+    type:actionNames.setEditViewToDefault,
+  })
+}
+
+export const updateExerciseById = (id, newExercise) => ({
+  type:actionNames.updateExerciseById,
+  id,
+  newExercise,
+})
+
+export const updateExerciseLocally = (newExercise) => ({
+  type: actionNames.updateExerciseLocally,
+  newExercise,
+})
+
+export const toggleExerciseEdited = (bool) => ({
+  type: actionNames.toggleExerciseEdited,
+  bool,
+}) 

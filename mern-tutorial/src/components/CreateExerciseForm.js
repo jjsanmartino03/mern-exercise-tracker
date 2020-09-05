@@ -12,12 +12,7 @@ const schema = yup.object({
   date: yup.date().required("Required"),
 });
 
-const formInitialValues = {
-  username: "",
-  description: '',
-  duration: "",
-  date: new Date(),
-};
+
 
 
 class CreateExerciseForm extends React.Component {
@@ -26,7 +21,7 @@ class CreateExerciseForm extends React.Component {
       <Formik
         validationSchema={schema}
         onSubmit={this.props.onSubmit}
-        initialValues={formInitialValues}
+        initialValues={this.props.formInitialValues}
       >
         {({
           handleSubmit,
