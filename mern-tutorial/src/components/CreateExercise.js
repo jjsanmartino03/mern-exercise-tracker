@@ -19,12 +19,11 @@ class CreateExercise extends React.Component {
     this.props.dispatch(toggleExerciseSent(false));
   }
   handleSubmit = (exercise) => {
-    alert(JSON.stringify(exercise, null, 2));
     this.props.dispatch(createExercise(exercise));
   }
   render() {
     return (
-      <Container className="exercise-container pb-5">
+      <Container className="responsive-container pb-5">
         <h1 className="text-center my-5">Create an Exercise!</h1>
         <CreateExerciseForm formInitialValues={
           {

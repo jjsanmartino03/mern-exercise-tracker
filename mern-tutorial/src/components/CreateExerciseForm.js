@@ -63,7 +63,7 @@ class CreateExerciseForm extends React.Component {
               </Form.Row>
               <Form.Row className="justify-content-center">
                 <Col md={3}>
-                  <Button type="submit" className="w-100">Submit form</Button>
+                  <Button type="submit" className="w-100 submit-btn">Submit form</Button>
                 </Col>
 
               </Form.Row>

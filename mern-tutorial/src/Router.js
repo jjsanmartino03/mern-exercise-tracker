@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/index.css';
+import {Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { Provider } from "react-redux";
@@ -17,6 +18,7 @@ function MyRouter() {
         <Route path="">
           <Navbar />
         </Route>
+        <Container fluid className="main-container w-100 h-100 p-0">
         <Route exact path="/">
           <ExercisesList />
         </Route>
@@ -27,6 +29,7 @@ function MyRouter() {
           <CreateUser />
         </Route>
         <Route exact path="/edit/:id" component={EditExercise} />
+        </Container>
       </Router>
     </Provider>
   )

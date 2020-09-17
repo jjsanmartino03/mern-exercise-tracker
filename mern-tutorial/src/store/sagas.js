@@ -3,7 +3,7 @@ import axios from "axios";
 
 import {actionNames, addFetchedUsers, fetchUsers as updateUsersCollection, addFetchedExercises, fetchExercises as updateExercisesCollection, deleteExerciseLocally, toggleExerciseSent, saveExerciseToEdit, updateExerciseLocally, toggleExerciseEdited } from "./actions";
 
-const port = 7000;
+const port = 5000;
 const urls = {
   sendNewUser : `http://192.168.0.13:${port}/users/add/`,
   getUsers : `http://192.168.0.13:${port}/users/`,

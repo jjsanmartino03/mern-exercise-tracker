@@ -27,7 +27,7 @@ class EditExercise extends React.Component {
     const exercise = this.props.editView.exercise;
     const loaded = this.props.editView.loaded;
     return (
-      <Container className="exercises-container">
+      <Container className="responsive-container">
         <h1 className="text-center my-5">Edit this exercise</h1>
         {loaded ?
           <Container>

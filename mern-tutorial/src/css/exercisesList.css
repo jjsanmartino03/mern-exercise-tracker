@@ -1,16 +1,5 @@
-.exercises-container{
-  width: 100%!important;
-}
 .exercise-item{
   background-color: rebeccapurple!important;
   box-shadow: 8px 7px 14px 0px #0000005b;
-  
 }
-.index-container{
-  background-color: #8e5bc1;
-}
-@media (min-width: 1000px){
-  .exercises-container{
-    width: 75%!important;
-  }
-}
+

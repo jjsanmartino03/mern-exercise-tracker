@@ -2,16 +2,76 @@
 @import "./createExercise.css";
 @import "./exercisesList.css";
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 body {
   margin: 0;
-  font-family: 'Ubuntu', "Dosis",sans-serif!important;
+  font-family: 'Ubuntu', "Dosis", sans-serif!important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
 }
-.text-yellow{
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/*class utilities*/
+
+.text-yellow {
   color: yellow!important;
 }
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+.responsive-container {
+  width: 100%!important;
+}
+
+@media (min-width: 1000px) {
+  .responsive-container {
+    width: 75%!important;
+  }
+}
+
+/*styles that apply to all views*/
+
+.main-container {
+  background-color: #9e6bd1;
+  flex-grow: 1;
+}
+
+/*Submit Button*/
+.submit-btn {
+  background-color: rebeccapurple!important;
+  box-shadow: 7px 7px 7px 1px rebeccapurple!important;
+  border-color: #9e6bd1!important;
+  transition: 0.8s!important;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.submit-btn:hover::before {
+  height: 180%;
+}
+.submit-btn:hover{
+  color: rebeccapurple!important;
+}
+.submit-btn::before{
+  transition: 0.8s;
+  content: "";
+  position: absolute;
+  background: #fff;
+  left: 0;
+  width: 100%;
+  height: 0%;
+
+  z-index: -1;
+  top:0;
+  border-radius: 0 0 50% 50%;
 }
