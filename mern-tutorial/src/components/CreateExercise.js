@@ -24,7 +24,7 @@ class CreateExercise extends React.Component {
   }
   render() {
     return (
-      <Container className="w-75 pb-5">
+      <Container className="exercise-container pb-5">
         <h1 className="text-center my-5">Create an Exercise!</h1>
         <CreateExerciseForm formInitialValues={
           {
