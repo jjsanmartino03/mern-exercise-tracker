@@ -1,5 +1,6 @@
 @import "./navbar.css";
 @import "./createExercise.css";
+@import "./exercisesList.css";
 
 body {
   margin: 0;

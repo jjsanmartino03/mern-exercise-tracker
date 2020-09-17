@@ -20,7 +20,7 @@ class ExercisesList extends React.Component {
   }
   render() {
     return (
-      <Container className="w-75 pb-5 d-flex flex-column align-items-center" variant="dark">
+      <Container fluid={"sm"} className="exercises-container pb-5 d-flex flex-column align-items-center" variant="dark">
         <h1 className="text-center my-5">Exercise Tracker</h1>
           {this.props.exercises.map((exercise, ind) => (
             <ExerciseItem onDelete={this.handleDelete} key={exercise._id || ind } exercise={exercise} />

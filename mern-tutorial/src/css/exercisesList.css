@@ -1,0 +1,9 @@
+.exercises-container{
+  width: 100%;
+}
+
+@media (min-width: 1000px){
+  .exercises-container{
+    width: 75%;
+  }
+}
