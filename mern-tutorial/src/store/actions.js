@@ -1,57 +1,50 @@
 export const actionNames = {
-  changeCurrentLocation : "CHANGE_CURRENT_LOCATION",
+  changeCurrentLocation: "CHANGE_CURRENT_LOCATION",
 
-  createUser : "CREATE_USER",
+  createUser: "CREATE_USER",
   createUserLocally: "CREATE_USER_LOCALLY",
 
-  createExercise : "CREATE_EXERCISE",
-  toggleExerciseSent : "TOGGLE_EXERCISE_SENT",
-  createExerciseLocally : "CREATE_EXERCISE_LOCALLY",
+  createExercise: "CREATE_EXERCISE",
+  toggleExerciseSent: "TOGGLE_EXERCISE_SENT",
+  createExerciseLocally: "CREATE_EXERCISE_LOCALLY",
 
-  fetchUsers : "FETCH_USERS",
-  addFetchedUsers : "ADD_FETCHED_USERS",
+  fetchUsers: "FETCH_USERS",
+  addFetchedUsers: "ADD_FETCHED_USERS",
 
-  fetchExercises : "FETCH_EXERCISES",
-  addFetchedExercises : "ADD_FETCHED_EXERCISES",
+  fetchExercises: "FETCH_EXERCISES",
+  addFetchedExercises: "ADD_FETCHED_EXERCISES",
 
   fetchExerciseById: "FETCH_EXERCISE_BY_ID",
   saveExerciseToEdit: "SAVE_EXERCISE_TO_EDIT",
 
-  deleteExerciseFromApi : "DELETE_EXERCISE_FROM_API",
-  deleteExerciseLocally : "DELETE_EXERCISE_LOCALLY",
+  deleteExerciseFromApi: "DELETE_EXERCISE_FROM_API",
+  deleteExerciseLocally: "DELETE_EXERCISE_LOCALLY",
 
-  setEditViewToDefault : "SET_EDIT_VIEW_TO_DEFAULT",
+  setEditViewToDefault: "SET_EDIT_VIEW_TO_DEFAULT",
 
-  updateExerciseById : "UPDATE_EXERCISE_BY_ID",
-  updateExerciseLocally : "UPDATE_EXERCISE_LOCALLY",
-  toggleExerciseEdited : "TOGGLE_EXERCISE_EDITED",
-  
+  updateExerciseById: "UPDATE_EXERCISE_BY_ID",
+  updateExerciseLocally: "UPDATE_EXERCISE_LOCALLY",
+  toggleExerciseEdited: "TOGGLE_EXERCISE_EDITED",
+
 }
 
-
-export const changeCurrentLocation = (newLocation) =>{
+//------------------- Common to all views ---------------------
+export const changeCurrentLocation = (newLocation) => {
   return ({
-    type : actionNames.changeCurrentLocation,
+    type: actionNames.changeCurrentLocation,
     newLocation
   })
 };
 
-
-
+//------------- Create user view ----------------------
 export const createUser = (newUser) => {
   return ({
     type: actionNames.createUser,
     newUser,
   })
 }
-/*export const createUserLocally = (newUser) => {
-  return {
-    type: actionNames.createUserLocally,
-    newUser,
-  }
-}*/
 
-
+//---------------- Create exercise view ---------------------
 export const createExercise = (newExercise) => {
   return ({
     type: actionNames.createExercise,
@@ -65,7 +58,7 @@ export const createExercise = (newExercise) => {
   })
 }*/
 
-
+// ------------- Common to create and edit views -----------------
 export const fetchUsers = () => {
   return ({
     type: actionNames.fetchUsers,
@@ -74,51 +67,52 @@ export const fetchUsers = () => {
 
 export const addFetchedUsers = (userCollection) => {
   return ({
-    type : actionNames.addFetchedUsers,
+    type: actionNames.addFetchedUsers,
     userCollection,
   });
 }
 
 
-
-export const fetchExercises = () => {
+// ------------- Exercise list view -------------------
+export const fetchExercises = () => { // Fetch the collection of exercises from the API
   return ({
     type: actionNames.fetchExercises,
   });
 }
-
-export const addFetchedExercises = (exerciseCollection) => {
+export const addFetchedExercises = (exerciseCollection) => { // Add the collection locally
   return ({
     type: actionNames.addFetchedExercises,
     exerciseCollection,
   });
 }
 
-
 export const deleteExerciseFromApi = (id) => {
   return ({
     type: actionNames.deleteExerciseFromApi,
-    id,
+    exerciseId: id,
   })
 }
-export const deleteExerciseLocally = (id) =>{
+export const deleteExerciseLocally = (id) => {
   return ({
     type: actionNames.deleteExerciseLocally,
-    id,
+    exerciseId: id,
   })
 }
 
+
+
 export const toggleExerciseSent = (bool) => {
   return ({
-    type:actionNames.toggleExerciseSent,
+    type: actionNames.toggleExerciseSent,
     bool,
   })
 }
 
+// ------------- Edit exercise view ---------------------
 export const fetchExerciseById = id => {
   return ({
-    type:actionNames.fetchExerciseById,
-    id,
+    type: actionNames.fetchExerciseById,
+    exerciseId: id,
   })
 }
 export const saveExerciseToEdit = exercise => {
@@ -127,18 +121,18 @@ export const saveExerciseToEdit = exercise => {
     exercise,
   })
 }
+
 export const setEditViewToDefault = () => {
   return ({
-    type:actionNames.setEditViewToDefault,
+    type: actionNames.setEditViewToDefault,
   })
 }
 
 export const updateExerciseById = (id, newExercise) => ({
-  type:actionNames.updateExerciseById,
-  id,
+  type: actionNames.updateExerciseById,
+  exerciseId: id,
   newExercise,
 })
-
 export const updateExerciseLocally = (newExercise) => ({
   type: actionNames.updateExerciseLocally,
   newExercise,

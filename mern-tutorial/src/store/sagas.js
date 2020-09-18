@@ -1,143 +1,152 @@
-import {takeEvery, put ,call} from "redux-saga/effects";
+import { takeEvery, put, call } from "redux-saga/effects";
 import axios from "axios";
 
-import {actionNames, addFetchedUsers, fetchUsers as updateUsersCollection, addFetchedExercises, fetchExercises as updateExercisesCollection, deleteExerciseLocally, toggleExerciseSent, saveExerciseToEdit, updateExerciseLocally, toggleExerciseEdited } from "./actions";
+import {
+  actionNames,
 
-const port = 5000;
+  addFetchedUsers,
+  addFetchedExercises,
+
+  deleteExerciseLocally,
+
+  toggleExerciseSent,
+  saveExerciseToEdit,
+  
+  updateExerciseLocally,
+  toggleExerciseEdited,
+} from "./actions";
+
+const port = 7000;
 const urls = {
-  sendNewUser : `http://192.168.0.13:${port}/users/add/`,
-  getUsers : `http://192.168.0.13:${port}/users/`,
-  sendNewExercise : `http://192.168.0.13:${port}/exercises/add/`,
-  exercises : `http://192.168.0.13:${port}/exercises/`,
-  updateExercise : `http://192.168.0.13:${port}/exercises/update/`,
+  sendNewUser: `http://192.168.0.13:${port}/users/add/`,
+  getUsers: `http://192.168.0.13:${port}/users/`,
+  sendNewExercise: `http://192.168.0.13:${port}/exercises/add/`,
+  exercises: `http://192.168.0.13:${port}/exercises/`,
+  updateExercise: `http://192.168.0.13:${port}/exercises/update/`,
 }
 
 
-function* mainSaga  (){
+function* mainSaga() {
   yield takeEvery(actionNames.createUser, sendNewUserSaga);
   yield takeEvery(actionNames.createExercise, sendNewExerciseSaga);
+
   yield takeEvery(actionNames.fetchUsers, fetchUsersSaga);
   yield takeEvery(actionNames.fetchExercises, fetchExercisesSaga);
+
   yield takeEvery(actionNames.deleteExerciseFromApi, deleteExerciseSaga);
-  yield takeEvery(actionNames.fetchExerciseById, fetchExerciseByIdSaga);
   yield takeEvery(actionNames.updateExerciseById, updateExerciseSaga);
+
+  yield takeEvery(actionNames.fetchExerciseById, fetchExerciseByIdSaga);
 };
 
-function* updateExerciseSaga (action){
+// --------------- Exercises list view -----------------
+function* fetchExercisesSaga() {
   try {
-    const response = yield call(updateExercise, action.id, action.newExercise);
+    const exercises = yield call(fetchExercises);
 
-    yield put(updateExerciseLocally(action.newExercise));
-    yield put(toggleExerciseEdited(true));
-
+    yield put(addFetchedExercises(exercises));
   } catch (error) {
     console.log("Error", error);
   }
 }
-const updateExercise  = async (id, exercise) => {
-  const response = (await axios.post(urls.updateExercise + id, exercise)).data;
-  return response;
+const fetchExercises = async () => { // The function that actually calls the API and gets the collection
+  const exercises = (await axios.get(urls.exercises)).data;
+
+  return (exercises);
 }
 
-function* deleteExerciseSaga (action) {
+function* deleteExerciseSaga(action) {
   try {
-    const response = yield call(deleteExercise,action.id);
+    const responseStatus = yield call(deleteExercise, action.exerciseId);
 
-    yield put(deleteExerciseLocally(action.id));
-  }catch(error){
+    yield put(deleteExerciseLocally(action.exerciseId));
+  } catch (error) {
     console.log("Error", error);
+    alert("Cuoldn't delete")
   }
 }
 
 const deleteExercise = async (id) => {
-  const resp = (await axios.delete(urls.exercises + id)).data;
-  console.log(resp);
+  const status = (await axios.delete(urls.exercises + id)).status;
 
-  return resp;
+  return status;
 }
 
-
-
-function* fetchExercisesSaga (){
+//------------ Edit exercise view ---------------
+function* fetchExerciseByIdSaga(action) {
   try {
-    const response = yield call(fetchExercises);
+    const exercises = yield call(fetchExerciseById, action.exerciseId);
 
-    yield put(addFetchedExercises(response));
+    yield put(saveExerciseToEdit(exercises));
   } catch (error) {
     console.log("Error", error);
-  }
-}
-
-const fetchExercises = async () =>{
-  const response = (await axios.get(urls.exercises) ).data;
-
-  return (response);
-}
-
-
-
-function* fetchUsersSaga(action){
-  try {
-    const response = yield call(fetchUsers);
-
-    yield put(addFetchedUsers(response));
-  } catch (error) {
-    console.log("Error", error);
-  }
-}
-
-const fetchUsers = async () =>{
-  const response = (await axios.get(urls.getUsers) ).data;
-
-  return (response);
-}
-
-
-
-function* sendNewExerciseSaga(action) {
-  try {
-    const response = yield call(sendNewExercise, action.newExercise);
-
-    yield put(toggleExerciseSent(true));
-  } catch (error) {
-    console.log("Error", error);
-  }
-}
-
-const sendNewExercise = async (newExercise) => {
-  let response = (await axios.post(urls.sendNewExercise, newExercise)).data;
-};
-
-
-
-function* sendNewUserSaga(action){
-  try{
-    const response = yield call(sendNewUser, action.newUser);
-    
-
-  }catch(error){
-    console.log("Error", error);
-  }
-}
-
-const sendNewUser = async (newUser) =>{
-  let response = (await axios.post(urls.sendNewUser, newUser)).data;
-  console.log(response);
-}
-
-function* fetchExerciseByIdSaga(action){
-  try {
-    const response = yield call(fetchExerciseById, action.id);
-
-    yield put(saveExerciseToEdit(response));
-  } catch (error) {
-    console.log("Error", error)
+    alert("Couldn't update");
   }
 }
 const fetchExerciseById = async (id) => {
-  const response = (await axios.get(urls.exercises + id)).data;
+  const exercise = (await axios.get(urls.exercises + id)).data;
 
-  return response;
+  return exercise;
+}
+
+function* updateExerciseSaga(action) {
+  try {
+    yield call(updateExercise, action.exerciseId, action.newExercise);
+
+    yield put(updateExerciseLocally(action.newExercise));
+    yield put(toggleExerciseEdited(true)); // This is done so the user is redirecte to another view
+
+  } catch (error) {
+    console.log("Error", error);
+  }
+}
+const updateExercise = async (id, exercise) => {
+  await axios.post(urls.updateExercise + id, exercise)
+}
+
+// ------------- Common to Edit and Create views -----------
+function* fetchUsersSaga(action) {
+  try {
+    const users = yield call(fetchUsers);
+
+    yield put(addFetchedUsers(users));
+  } catch (error) {
+    console.log("Error", error);
+  }
+}
+const fetchUsers = async () => {
+  const users = (await axios.get(urls.getUsers)).data;
+
+  return (users);
+}
+
+//---------------- Create exercise view ---------------
+function* sendNewExerciseSaga(action) {
+  try {
+    yield call(sendNewExercise, action.newExercise);
+
+    yield put(toggleExerciseSent(true)); // After this the user is redirected to another view
+  } catch (error) {
+    console.log("Error", error);
+  }
+}
+const sendNewExercise = async (newExercise) => {
+  await axios.post(urls.sendNewExercise, newExercise);
+};
+
+//---------------- Create user view ---------------
+function* sendNewUserSaga(action) {
+  try {
+    yield call(sendNewUser, action.newUser);
+
+
+  } catch (error) {
+    console.log("Error", error);
+  }
+}
+
+const sendNewUser = async (newUser) => {
+  await axios.post(urls.sendNewUser, newUser);
 }
 
 export default mainSaga;

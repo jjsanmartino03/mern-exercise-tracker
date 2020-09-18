@@ -2,8 +2,15 @@ import React from "react";
 import { Formik } from "formik";
 import { Form, Col, Button } from "react-bootstrap";
 import * as yup from "yup";
+
 import "react-datepicker/dist/react-datepicker.css";
-import { MyUsernameField, DurationField, DescriptionField, DatePickerField } from "./CreateExerciseFormElements";
+
+import {
+  MyUsernameField,
+  DurationField,
+  DescriptionField,
+  DatePickerField
+} from "./CreateExerciseFormElements";
 
 const schema = yup.object({
   username: yup.string().min(3, "Username to short").required("Required"),

@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from './Router';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker'; // I don't know what is this but I let it here
+// TODO: learn about serviceWorker
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import Router from './Router'; // The Router where all my app is located
+import './css/index.css'; // The css file that has all the styling of the project
 
 ReactDOM.render(
   <React.StrictMode>

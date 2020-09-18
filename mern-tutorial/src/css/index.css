@@ -29,6 +29,8 @@ code {
 
 .responsive-container {
   width: 100%!important;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 1000px) {

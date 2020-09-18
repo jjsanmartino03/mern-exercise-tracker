@@ -2,24 +2,27 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Formik, useField } from "formik";
-import {Form, Button, InputGroup, Col} from "react-bootstrap";
+import { Form, Button, InputGroup, Col } from "react-bootstrap";
 import * as yup from "yup";
 
-import { changeCurrentLocation, createUser } from "../store/actions";
+import {
+  changeCurrentLocation,
+  createUser
+} from "../store/actions";
 
 
-const UsernameField = ({label, ...props}) => {
-  const [field, meta] = useField(props);
+const UsernameField = ({ label, ...props }) => {
+  const [field, meta] = useField(props); // Uses React Hook to get data about this formik field
 
   return (
-    <Form.Group as={Col} md={6}controlId="validationFormikUsername">
+    <Form.Group as={Col} md={6} controlId="validationFormikUsername">
       <Form.Label>{label}</Form.Label>
       <InputGroup>
         <InputGroup.Prepend>
           <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
-        className="rounded-right"
+          className="rounded-right"
           aria-describedby="inputGroupPrepend"
           {...field} {...props}
           isInvalid={meta.error && meta.touched}
@@ -39,7 +42,7 @@ const UsernameField = ({label, ...props}) => {
 }
 
 const schema = yup.object({
-  username: yup.string().required("Input Required").min(3, "It has to be longer than 3 characters"),
+  username: yup.string().required("Input Required").min(3, "Username has to be longer than 3 characters"),
 })
 
 class CreateUsername extends React.Component {
@@ -52,15 +55,16 @@ class CreateUsername extends React.Component {
   }
   handleSubmit = (user) => {
     this.props.dispatch(createUser(user));
+    alert("User created Successfuly!"); // This shows success even if the request fails. As I say in the README, I should learn more about managing requests and responses with react-saga and react-redux.
   }
   render() {
     return (
       <Container className="pb-5">
         <h1 className="my-5 text-center">Sign Up!</h1>
         <Formik
-        onSubmit={this.handleSubmit}
-        validationSchema={schema}
-        initialValues={{username:""}}
+          onSubmit={this.handleSubmit}
+          validationSchema={schema}
+          initialValues={{ username: "" }}
         >
           {({
             handleSubmit,
@@ -80,11 +84,11 @@ class CreateUsername extends React.Component {
                     label="Input your username" />
                 </Form.Row>
                 <Form.Row className="justify-content-center">
-                <Col md={3}>
-                  <Button type="submit" className="w-100 submit-btn">Submit form</Button>
-                </Col>
+                  <Col md={3}>
+                    <Button type="submit" className="w-100 submit-btn">Submit form</Button>
+                  </Col>
 
-              </Form.Row>
+                </Form.Row>
 
 
               </Form>
