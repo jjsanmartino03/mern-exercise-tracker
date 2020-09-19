@@ -16,7 +16,7 @@ import {
   toggleExerciseEdited,
 } from "./actions";
 
-const port = 7000;
+const port = 7010;
 const urls = {
   sendNewUser: `http://192.168.0.13:${port}/users/add/`,
   getUsers: `http://192.168.0.13:${port}/users/`,
@@ -57,7 +57,7 @@ const fetchExercises = async () => { // The function that actually calls the API
 
 function* deleteExerciseSaga(action) {
   try {
-    const responseStatus = yield call(deleteExercise, action.exerciseId);
+    yield call(deleteExercise, action.exerciseId);
 
     yield put(deleteExerciseLocally(action.exerciseId));
   } catch (error) {
