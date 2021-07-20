@@ -18,11 +18,11 @@ import {
 
 const port = 7010;
 const urls = {
-  sendNewUser: `http://192.168.0.13:${port}/users/add/`,
-  getUsers: `http://192.168.0.13:${port}/users/`,
-  sendNewExercise: `http://192.168.0.13:${port}/exercises/add/`,
-  exercises: `http://192.168.0.13:${port}/exercises/`,
-  updateExercise: `http://192.168.0.13:${port}/exercises/update/`,
+  sendNewUser: `http://localhost:${port}/users/add/`,
+  getUsers: `http://localhost:${port}/users/`,
+  sendNewExercise: `http://localhost:${port}/exercises/add/`,
+  exercises: `http://localhost:${port}/exercises/`,
+  updateExercise: `http://localhost:${port}/exercises/update/`,
 }
 
 

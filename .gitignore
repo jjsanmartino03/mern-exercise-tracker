@@ -4,23 +4,23 @@ backend/.env
 ## Client
 
 # dependencies
-mern-tutorial/node_modules
-mern-tutorial/.pnp
-mern-tutorial/.pnp.js
+frontend/node_modules
+frontend/.pnp
+frontend/.pnp.js
 
 # testing
-mern-tutorial/coverage
+frontend/coverage
 
 # production
-mern-tutorial/build
+frontend/build
 
 # misc
-mern-tutorial/.DS_Store
-mern-tutorial/.env.local
-mern-tutorial/.env.development.local
-mern-tutorial/.env.test.local
-mern-tutorial/.env.production.local
+frontend/.DS_Store
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
 
-mern-tutorial/npm-debug.log*
-mern-tutorial/yarn-debug.log*
-mern-tutorial/yarn-error.log*
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*

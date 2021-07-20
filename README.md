@@ -12,7 +12,7 @@ It **doesn't have authentication, anyone can do anything on the data**.
 ## How to set up
 - Setup the database in [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) as explained [here](https://youtu.be/7CqJlxBYj-M?t=302)
 - Clone this repository into your computer
-- Inside each folder ('backend' and 'mern-tutorial') type the command `npm install` or `yarn install`
+- Inside each folder ('backend' and 'frontend') type the command `npm install` or `yarn install`
 - Inside the backend folder create a .env file containing the variable `ATLAS_URI`
   - This variable should contain the link given when setting up your database.
 - Install *nodemon* globally by typing `npm install -g`
