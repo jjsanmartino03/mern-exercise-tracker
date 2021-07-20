@@ -1,5 +1,7 @@
 export const actionNames = {
   changeCurrentLocation: "CHANGE_CURRENT_LOCATION",
+  openOperation: "OPEN_OPERATION",
+  closeOperation: "CLOSE_OPERATION",
 
   createUser: "CREATE_USER",
   createUserLocally: "CREATE_USER_LOCALLY",
@@ -142,3 +144,15 @@ export const toggleExerciseEdited = (bool) => ({
   type: actionNames.toggleExerciseEdited,
   bool,
 }) 
+
+export const openOperation = () => {
+  return ({
+    type: actionNames.openOperation,
+  })
+}
+
+export const closeOperation = () => {
+  return ({
+    type: actionNames.closeOperation,
+  })
+}

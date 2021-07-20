@@ -1,5 +1,5 @@
 import { takeEvery, put, call } from "redux-saga/effects";
-import axios from "axios";
+import apiClient from "../api-client";
 
 import {
   actionNames,
@@ -16,13 +16,14 @@ import {
   toggleExerciseEdited,
 } from "./actions";
 
-const port = 7010;
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const urls = {
-  sendNewUser: `http://localhost:${port}/users/add/`,
-  getUsers: `http://localhost:${port}/users/`,
-  sendNewExercise: `http://localhost:${port}/exercises/add/`,
-  exercises: `http://localhost:${port}/exercises/`,
-  updateExercise: `http://localhost:${port}/exercises/update/`,
+  sendNewUser: `${apiUrl}/users/add/`,
+  getUsers: `${apiUrl}/users/`,
+  sendNewExercise: `${apiUrl}/exercises/add/`,
+  exercises: `${apiUrl}/exercises/`,
+  updateExercise: `${apiUrl}/exercises/update/`,
 }
 
 
@@ -50,7 +51,7 @@ function* fetchExercisesSaga() {
   }
 }
 const fetchExercises = async () => { // The function that actually calls the API and gets the collection
-  const exercises = (await axios.get(urls.exercises)).data;
+  const exercises = (await apiClient.get(urls.exercises)).data;
 
   return (exercises);
 }
@@ -67,7 +68,7 @@ function* deleteExerciseSaga(action) {
 }
 
 const deleteExercise = async (id) => {
-  const status = (await axios.delete(urls.exercises + id)).status;
+  const status = (await apiClient.delete(urls.exercises + id)).status;
 
   return status;
 }
@@ -84,7 +85,7 @@ function* fetchExerciseByIdSaga(action) {
   }
 }
 const fetchExerciseById = async (id) => {
-  const exercise = (await axios.get(urls.exercises + id)).data;
+  const exercise = (await apiClient.get(urls.exercises + id)).data;
 
   return exercise;
 }
@@ -101,7 +102,7 @@ function* updateExerciseSaga(action) {
   }
 }
 const updateExercise = async (id, exercise) => {
-  await axios.post(urls.updateExercise + id, exercise)
+  await apiClient.post(urls.updateExercise + id, exercise)
 }
 
 // ------------- Common to Edit and Create views -----------
@@ -115,7 +116,7 @@ function* fetchUsersSaga(action) {
   }
 }
 const fetchUsers = async () => {
-  const users = (await axios.get(urls.getUsers)).data;
+  const users = (await apiClient.get(urls.getUsers)).data;
 
   return (users);
 }
@@ -131,7 +132,7 @@ function* sendNewExerciseSaga(action) {
   }
 }
 const sendNewExercise = async (newExercise) => {
-  await axios.post(urls.sendNewExercise, newExercise);
+  await apiClient.post(urls.sendNewExercise, newExercise);
 };
 
 //---------------- Create user view ---------------
@@ -146,7 +147,7 @@ function* sendNewUserSaga(action) {
 }
 
 const sendNewUser = async (newUser) => {
-  await axios.post(urls.sendNewUser, newUser);
+  await apiClient.post(urls.sendNewUser, newUser);
 }
 
 export default mainSaga;

@@ -21,6 +21,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.loading-spinner-container {
+  z-index: 999;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem .5rem;
+  margin: .5rem;
+  background-color: #fff;
+  border-radius: 5px;
+  bottom: 0;
+  right: 0;
+}
+
 /*class utilities*/
 
 .text-yellow {

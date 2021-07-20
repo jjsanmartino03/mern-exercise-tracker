@@ -10,6 +10,7 @@ frontend/.pnp.js
 
 # testing
 frontend/coverage
+frontend/.env
 
 # production
 frontend/build
