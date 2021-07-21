@@ -21,7 +21,7 @@ function MyRouter({ global }) {
         <Navbar />
       </Route>
       <Container fluid className="main-container w-100 h-100 p-0">
-        <Route exact path="">
+        <Route exact path="/">
           <ExercisesList />
         </Route>
         <Route exact path="/create">
