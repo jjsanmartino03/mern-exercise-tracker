@@ -7,10 +7,12 @@ import mainSaga from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(
-  mainReducer,
-  applyMiddleware(sagaMiddleware, logger),
-);
+let store;
+if (process.env.NODE_ENV === "development") {
+  store = createStore(mainReducer, applyMiddleware(sagaMiddleware, logger));
+} else {
+  store = createStore(mainReducer, applyMiddleware(sagaMiddleware));
+}
 
 sagaMiddleware.run(mainSaga);
 
