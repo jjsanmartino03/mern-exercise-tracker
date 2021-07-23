@@ -1,6 +1,6 @@
 # Exercise Tracker with MERN stack
 This is a project done based on this [freeCodeCamp tutorial](https://www.youtube.com/watch?v=7CqJlxBYj-M). The tutorial shows how to build a website by using *React, MongoDB Atlas, Express and Node.js*. What I did on my own was to mix those tools with **React-Redux, Redux-Saga, Formik (also with Yup) and React-Bootstrap**. It has no purpose rather than to practice. What I mean is that it doesn't do anything special nor solves any problem.
-
+![image](https://user-images.githubusercontent.com/58923155/126834285-9a4ffc49-054e-4c25-b815-11651aa5ec6b.png)
 It is simple exercise tracker that lets yout:
 - Add a new "user"
 - Create a new Exercise, with some information
